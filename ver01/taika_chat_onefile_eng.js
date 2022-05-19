@@ -915,7 +915,7 @@ function checkMoment() {
 					"fontCustomColor": "FFFFFF"
 				},
 				"questions": ["username"],
-				"welcomeText": "Tervetuloa!\nKuinka voin auttaa"
+				"welcomeText": "Welcome!\nHow can I help you?"
 			},
 			"task": {
 				"isShowAmount": false,
@@ -926,10 +926,10 @@ function checkMoment() {
 			"playAlarm": true,
 			"disabled": false,
 			"canRemoveTicket": false,
-			"_id": "624bf0642108a5b9189ac7d9",
+			"_id": "624bf02b7dcfd297defa5bc4",
 			"channelType": "chat",
 			"department": "605362c63511824edb2b98c0",
-			"locale": "5ad84f719bd1787c7f30da93",
+			"locale": "5ad84f719bd1787c7f30da94",
 			"__v": 0
 		});
 	} else {
@@ -1404,7 +1404,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       } else if (EmbedTaikaChatCore.settings.chat.window.backgroundColor) {
         $('.taika-chat-box-top').css('background-color', '#' + EmbedTaikaChatCore.settings.chat.window.backgroundColor)
       }
-      $('#taika-chat-page-greeting').show();
+      $('#taika-chat-page-greeting').hide();
       $('#taika-chat-page2').hide();
       $('#taika-chat-page3').hide();
       if (EmbedTaikaChatCore.settings.chat.window.fontCustomColor) {

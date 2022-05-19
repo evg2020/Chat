@@ -8,6 +8,7 @@ function dynamicallyLoadScript(url, defer) {
 }
 
 
+
 $("<link rel='stylesheet' id='chatstyle-css' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' type='text/css' media='all' />").appendTo('head');
 
 
@@ -840,7 +841,7 @@ document.head.appendChild(styleTastStyle)
 
 
 
-//Script from taika setUp-----------------
+//Script from taika_index.js-----------------
 function checkMoment() {
 	if (typeof moment !== "undefined" && moment && moment.tz) {
 		if (initDelayTimeout) clearTimeout(initDelayTimeout);
@@ -1227,9 +1228,9 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
         $(this).attr("placeholder", EmbedTaikaChatCommon.getMsgByLocale(key))
       });
     },
+/// ---start chat button 'Connect Srromma'-
     showChatButton: function (reuse) {
       EmbedTaikaChatCore.chat_activated = true;
-
       if ($("#taika-chat-button").length > 0) {
         $('#taika-chat-button').show();
         EmbedTaikaChatUI.reloadButtonStatus();
@@ -1351,6 +1352,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       EmbedTaikaChatUI.translateReplace();
       EmbedTaikaChatUI.reloadButtonStatus();
     },
+
     createChatBox: function () {
       var maximizedBox =
         "<div id='taika-chat-box' class='taika-chat-box' >\n\
@@ -1404,7 +1406,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       } else if (EmbedTaikaChatCore.settings.chat.window.backgroundColor) {
         $('.taika-chat-box-top').css('background-color', '#' + EmbedTaikaChatCore.settings.chat.window.backgroundColor)
       }
-      $('#taika-chat-page-greeting').hide();
+      $('#taika-chat-page-greeting').show();
       $('#taika-chat-page2').hide();
       $('#taika-chat-page3').hide();
       if (EmbedTaikaChatCore.settings.chat.window.fontCustomColor) {
@@ -1615,6 +1617,8 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
         }
       })
       $('#taika-chat-questions').append(questionsElements)
+
+      ///----------evg--start chat just after push button'Connect Stroma'--
       $('.taika-start-button').on("click", function (e) {
         EmbedTaikaChatCore.chatAnswers = EmbedTaikaChatUI.readAnswers();
         EmbedTaikaChatUI.openChatWindow();

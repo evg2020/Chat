@@ -7,9 +7,9 @@ function dynamicallyLoadScript(url, defer) {
 	document.head.appendChild(script); // Add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
 }
 
-dynamicallyLoadScript('./printThis.js');
-dynamicallyLoadScript('./chatScriptCore.js');
-dynamicallyLoadScript('./moment_with_timezone.js', true);
+dynamicallyLoadScript('printThis.js');
+dynamicallyLoadScript('chatScriptCore.js');
+dynamicallyLoadScript('moment_with_timezone.js', true);
 
 $("<link rel='stylesheet' id='chatstyle-css' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' type='text/css' media='all' />").appendTo('head');
 $("<link rel='stylesheet' id='chatstyle-css' href='./css/taika-chat-preview.css' type='text/css' media='all' />").appendTo('head');
@@ -18,7 +18,7 @@ $("<link rel='stylesheet' id='chatstyle-css' href='./css/taika_test_style.css' t
 function checkMoment() {
 	if (typeof moment !== "undefined" && moment && moment.tz) {
 		if (initDelayTimeout) clearTimeout(initDelayTimeout);
-		EmbedTaikaChatCore.init('wss://connect.taikacompany.com/chat/socket', 'https://connect.taikacompany.com/static/res/', {
+		EmbedTaikaChatCore.init('wss://node2.taikacompany.com:9090', 'https://node2.taikacompany.com:3000/static/res/', {
 			"sla": {
 				"silver": {
 					"time": 1,
@@ -89,7 +89,7 @@ function checkMoment() {
 					"fontCustomColor": "FFFFFF"
 				},
 				"questions": ["username"],
-				"welcomeText": "Welcome!\nHow can I help you?"
+				"welcomeText": "Tervetuloa!\nKuinka voin auttaa"
 			},
 			"task": {
 				"isShowAmount": false,
@@ -100,10 +100,10 @@ function checkMoment() {
 			"playAlarm": true,
 			"disabled": false,
 			"canRemoveTicket": false,
-			"_id": "624bf02b7dcfd297defa5bc4",
+			"_id": "6245ad796730ac7ed6e04b4d",
 			"channelType": "chat",
-			"department": "605362c63511824edb2b98c0",
-			"locale": "5ad84f719bd1787c7f30da94",
+			"department": "624599af93a98d7f5e8e2f5c",
+			"locale": "5bec6c0c2453e74d2f95ce2c",
 			"__v": 0
 		});
 	} else {

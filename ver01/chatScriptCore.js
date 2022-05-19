@@ -228,7 +228,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       } else if (EmbedTaikaChatCore.settings.chat.window.backgroundColor) {
         $('.taika-chat-box-top').css('background-color', '#' + EmbedTaikaChatCore.settings.chat.window.backgroundColor)
       }
-      $('#taika-chat-page-greeting').show();
+      $('#taika-chat-page-greeting').hide();
       $('#taika-chat-page2').hide();
       $('#taika-chat-page3').hide();
       if (EmbedTaikaChatCore.settings.chat.window.fontCustomColor) {
@@ -734,7 +734,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
     closeConfirmationDialog: function () {
       $('#taika-satisfaction-dialog').remove();
     },
-
+    
     satisfactionDialog: function (e) {
       $('#taika-satisfaction-dialog').remove();
       if (EmbedTaikaChatCore.settings.chat.customerSatisfaction.toggled &&
