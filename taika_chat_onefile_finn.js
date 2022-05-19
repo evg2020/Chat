@@ -169,14 +169,20 @@ var chatPreview = `
 .taika-fileshare-button
 {
   width: 80px;
-  height: 25px;
+  height: 35px;
   border: 0;
   border-radius: 10px;
   float:right;
   background-color: #33AA44;
   color: #ffffff;
-  font-size: 11px;
-  margin-top: 5px;
+  font-size: 14px;
+  margin-top: -12px;
+  margin-right: 10px;
+}
+
+.greeting-word {
+  padding: 6px 0 12px 15px;
+  font-size: 14px
 }
 
 .taika-fileshare-button{
@@ -886,7 +892,7 @@ function checkMoment() {
 					"chatActions": [],
 					"chatHeaders": [],
 					"logo": null,
-					"customHeader": "Stromma Customer Support",
+					"customHeader": "Stromma Asiakaspalvelu",
 					"backgroundColor": "000000",
 					"backgroundCustomColor": "dd052b",
 					"fontCustomColor": "FFFFFF",
@@ -895,20 +901,20 @@ function checkMoment() {
 				"button": {
 					"gaps": {
 						"horizontal": {
-							"value": 12,
+							"value": 25,
 							"unit": "px"
 						},
 						"vertical": {
-							"value": 12,
+							"value": 3,
 							"unit": "%"
 						}
 					},
-					"ifNoAgents": "keepChatOn",
+					"ifNoAgents": "hideChat",
 					"chatIcon": true,
 					"availableAgents": false,
-					"customText": "connect Stromma",
+					"customText": "Chat",
 					"textSize": "normal",
-					"cornerRadius": "10%/50%",
+					"cornerRadius": "20%/50%",
 					"color": "000000",
 					"customColor": "27A536",
 					"alignment": "bottom-right",
@@ -1346,7 +1352,8 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
         EmbedTaikaChatUI.maximize()
       } else {
         $('#taika-chat-menu-icon-img').hide();
-        $('#taika-chat-page-greeting').show();
+        $('#taika-chat-page-greeting').hide();
+        $('#taika-chat-page2').show();
       }
       EmbedTaikaChatUI.translateReplace();
       EmbedTaikaChatUI.reloadButtonStatus();
@@ -1377,7 +1384,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       <div class='taika-center'><button class='taika-start-button'><span data-tc-trans-key='Start chat'>Start chat</span></button></div>\n\
     </div>\n\
     <div id='taika-chat-page2'>\n\
-      <div class='taika-chat-messages' id='taika-chat-messages'></div>\n\
+      <div class='taika-chat-messages' id='taika-chat-messages'><div class = 'taika-agent-message greeting-word' >Tervetuloa! Kuinka voimme auttaa?</div></div>\n\
       <div class='taika-chat-status' id='taika-chat-status'></div>\n\
       <div class='taika-input-area'>\n\
         <textarea id='taika-chat-input' data-tc-trans-key='Type your message here...' placeholder='Type your message here...' rows='3' wrap='soft' class='padded_placeholder taika-chat-input'></textarea>\n\
@@ -1404,8 +1411,8 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       } else if (EmbedTaikaChatCore.settings.chat.window.backgroundColor) {
         $('.taika-chat-box-top').css('background-color', '#' + EmbedTaikaChatCore.settings.chat.window.backgroundColor)
       }
-      $('#taika-chat-page-greeting').show();
-      $('#taika-chat-page2').hide();
+      $('#taika-chat-page-greeting').hide();
+      $('#taika-chat-page2').show();
       $('#taika-chat-page3').hide();
       if (EmbedTaikaChatCore.settings.chat.window.fontCustomColor) {
         $('.taika-chat-box-top').css('color', '#' + EmbedTaikaChatCore.settings.chat.window.fontCustomColor)
@@ -1478,7 +1485,8 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
           $('#taika-chat-page-greeting').hide();
           return;
         }
-        $('#taika-chat-page-greeting').show();
+        $('#taika-chat-page-greeting').hide();
+        $('#taika-chat-page2').show();
         EmbedTaikaChatUI.currentPanel = 'greeting';
       }
     },
@@ -1927,7 +1935,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       if ($("#taika-satisfaction-dialog").length === 0) {
         html =
           "<div id='taika-satisfaction-dialog' class='taika-satisfaction-dialog'>\n\
-            <div style='text-align:center;'>" + EmbedTaikaChatCommon.getMsgByLocale('How are you satisfied with assistance?') + "</div>\n\
+            <div style='text-align:center;'>Kuinka hyvin onnistuimme auttamaan sinua?</div>\n\
             <div>&nbsp;</div>\n\
             <div id='taika-satisfaction-body' style='text-align:center;'></div>\n\
             <div>&nbsp;</div>\n\
@@ -2165,7 +2173,7 @@ var EmbedTaikaChatCore = EmbedTaikaChatCore || (function () {
     },
     socketOnClose: function (event) {
       clearInterval(EmbedTaikaChatCore.agentCountTimer);
-      EmbedTaikaChatUI.setStatusMessage(EmbedTaikaChatCommon.getMsgByLocale('Connection lost. Please refresh the chat'));
+      // EmbedTaikaChatUI.setStatusMessage(EmbedTaikaChatCommon.getMsgByLocale('Connection lost. Please refresh the chat'));
       EmbedTaikaChatCore.socketConnect();
     },
     socketOnError: function () {

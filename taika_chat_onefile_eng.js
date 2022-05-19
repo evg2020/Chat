@@ -170,14 +170,20 @@ var chatPreview = `
 .taika-fileshare-button
 {
   width: 80px;
-  height: 25px;
+  height: 35px;
   border: 0;
   border-radius: 10px;
   float:right;
   background-color: #33AA44;
   color: #ffffff;
-  font-size: 11px;
-  margin-top: 5px;
+  font-size: 14px;
+  margin-top: -12px;
+  margin-right: 10px;
+}
+
+.greeting-word {
+  padding: 6px 0 12px 15px;
+  font-size: 14px
 }
 
 .taika-fileshare-button{
@@ -887,7 +893,7 @@ function checkMoment() {
 					"chatActions": [],
 					"chatHeaders": [],
 					"logo": null,
-					"customHeader": "Stromma Customer Support",
+					"customHeader": "Stromma Customer Service",
 					"backgroundColor": "000000",
 					"backgroundCustomColor": "dd052b",
 					"fontCustomColor": "FFFFFF",
@@ -896,20 +902,20 @@ function checkMoment() {
 				"button": {
 					"gaps": {
 						"horizontal": {
-							"value": 12,
+							"value": 25,
 							"unit": "px"
 						},
 						"vertical": {
-							"value": 12,
+							"value": 3,
 							"unit": "%"
 						}
 					},
-					"ifNoAgents": "keepChatOn",
+					"ifNoAgents": "hideChat",
 					"chatIcon": true,
 					"availableAgents": false,
-					"customText": "connect Stromma",
+					"customText": " Chat ",
 					"textSize": "normal",
-					"cornerRadius": "10%/50%",
+					"cornerRadius": "20%/50%",
 					"color": "000000",
 					"customColor": "27A536",
 					"alignment": "bottom-right",
@@ -1203,7 +1209,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       $('#taika-chat-status').text(text)
     },
     setAgentChatClosed: function () {
-      $('.taika-chat-messages').append("<b>Asiakaspalvelija päättänyt istunnon!</b>");
+      $('.taika-chat-messages').append("<b>The customer support employee has finished the session!</b>");
       $("#taika-chat-input").hide();
       $("#taika-send-button").hide();
       EmbedTaikaChatUI.chatMessagesScrollTop();
@@ -1347,7 +1353,8 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
         EmbedTaikaChatUI.maximize()
       } else {
         $('#taika-chat-menu-icon-img').hide();
-        $('#taika-chat-page-greeting').show();
+        $('#taika-chat-page-greeting').hide();
+        $('#taika-chat-page2').show();
       }
       EmbedTaikaChatUI.translateReplace();
       EmbedTaikaChatUI.reloadButtonStatus();
@@ -1379,7 +1386,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       <div class='taika-center'><button class='taika-start-button'><span data-tc-trans-key='Start chat'>Start chat</span></button></div>\n\
     </div>\n\
     <div id='taika-chat-page2'>\n\
-      <div class='taika-chat-messages' id='taika-chat-messages'></div>\n\
+      <div class='taika-chat-messages' id='taika-chat-messages'><div class = 'taika-agent-message greeting-word' >Welcome! How can we help you?</div></div>\n\
       <div class='taika-chat-status' id='taika-chat-status'></div>\n\
       <div class='taika-input-area'>\n\
         <textarea id='taika-chat-input' data-tc-trans-key='Type your message here...' placeholder='Type your message here...' rows='3' wrap='soft' class='padded_placeholder taika-chat-input'></textarea>\n\
@@ -1406,8 +1413,8 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       } else if (EmbedTaikaChatCore.settings.chat.window.backgroundColor) {
         $('.taika-chat-box-top').css('background-color', '#' + EmbedTaikaChatCore.settings.chat.window.backgroundColor)
       }
-      $('#taika-chat-page-greeting').show();
-      $('#taika-chat-page2').hide();
+      $('#taika-chat-page-greeting').hide();
+      $('#taika-chat-page2').show();
       $('#taika-chat-page3').hide();
       if (EmbedTaikaChatCore.settings.chat.window.fontCustomColor) {
         $('.taika-chat-box-top').css('color', '#' + EmbedTaikaChatCore.settings.chat.window.fontCustomColor)
@@ -1480,7 +1487,8 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
           $('#taika-chat-page-greeting').hide();
           return;
         }
-        $('#taika-chat-page-greeting').show();
+        $('#taika-chat-page-greeting').hide();
+        $('#taika-chat-page2').show();
         EmbedTaikaChatUI.currentPanel = 'greeting';
       }
     },
@@ -1781,13 +1789,14 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
         EmbedTaikaChatUI.playAudio();
         if (EmbedTaikaChatUI.maximized === false) { // Minimized
 
-          //this.new_message_counter++;
+          // this.new_message_counter++;
           // $("#wcs-minimize-logo").hide();
           // if (this.new_message_counter == 1) {
           //   $("#wcs-new-message").empty().append("1 uusi viesti");
           // } else {
           //   $("#wcs-new-message").empty().append(new_message_counter + " uutta viestiä");
           // }
+
           EmbedTaikaChatUI.saved_content += this.agentMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments);
         } else {
           $('#taika-chat-messages').append(this.agentMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments));
@@ -1925,13 +1934,13 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
         $('#taika-satisfaction-dialog').remove()
       }
     },
-    //------------
+
     openSatisfactionDialog: function () {
       $('#taika-satisfaction-dialog').remove();
       if ($("#taika-satisfaction-dialog").length === 0) {
         html =
           "<div id='taika-satisfaction-dialog' class='taika-satisfaction-dialog'>\n\
-            <div style='text-align:center;'>" + EmbedTaikaChatCommon.getMsgByLocale('How are you satisfied with assistance?') + "</div>\n\
+            <div style='text-align:center;'>How satisfied are you with the assistance?</div>\n\
             <div>&nbsp;</div>\n\
             <div id='taika-satisfaction-body' style='text-align:center;'></div>\n\
             <div>&nbsp;</div>\n\
@@ -2169,7 +2178,7 @@ var EmbedTaikaChatCore = EmbedTaikaChatCore || (function () {
     },
     socketOnClose: function (event) {
       clearInterval(EmbedTaikaChatCore.agentCountTimer);
-      EmbedTaikaChatUI.setStatusMessage(EmbedTaikaChatCommon.getMsgByLocale('Connection lost. Please refresh the chat'));
+      // EmbedTaikaChatUI.setStatusMessage(EmbedTaikaChatCommon.getMsgByLocale('Connection lost. Please refresh the chat'));
       EmbedTaikaChatCore.socketConnect();
     },
     socketOnError: function () {
@@ -2216,6 +2225,7 @@ var EmbedTaikaChatCore = EmbedTaikaChatCore || (function () {
       if (!message.hasOwnProperty('type')) return;
       //---------evg---name in the line answer on the client chat
       // EmbedTaikaChatUI.setStatusMessage(message.message_text + ' ' + EmbedTaikaChatCommon.getMsgByLocale(message.type));
+      //---translation hard englsh--
       EmbedTaikaChatUI.setStatusMessage(EmbedTaikaChatCommon.getMsgByLocale('Customer support writing'));
       if (message.type === 'disconnect') {
         if (this.statusTimeout) clearTimeout(this.statusTimeout);
