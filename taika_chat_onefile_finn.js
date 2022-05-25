@@ -94,9 +94,8 @@ var chatPreview = `
 
 .taika-agent-message > .message {
   font-family: Helvetica;
-  line-height: 16px;
-  font-size: 12px;
-
+  line-height: 15px;
+  font-size: 14px;
   color: rgba(0,0,0,0.90);
   letter-spacing: 0;
   display: table-cell;
@@ -132,8 +131,8 @@ var chatPreview = `
 
 .taika-user-message > .message {
   font-family: Helvetica;
-  line-height: 16px;
-  font-size: 12px;
+  line-height: 15px;
+  font-size: 14px;
   color: rgba(0,0,0,0.90);
   letter-spacing: 0;
   display: table-cell;
@@ -876,7 +875,7 @@ function checkMoment() {
 			},
 			"chat": {
 				"schedule": {
-					"ifClosed": "keepChatOn",
+					"ifClosed": "hideChat",
 					"showOpenTime": false
 				},
 				"customerSatisfaction": {
@@ -912,7 +911,7 @@ function checkMoment() {
 					"ifNoAgents": "hideChat",
 					"chatIcon": true,
 					"availableAgents": false,
-					"customText": "Chat",
+					"customText": " Chat ",
 					"textSize": "normal",
 					"cornerRadius": "20%/50%",
 					"color": "000000",
@@ -1387,13 +1386,13 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       <div class='taika-chat-messages' id='taika-chat-messages'><div class = 'taika-agent-message greeting-word' >Tervetuloa! Kuinka voimme auttaa?</div></div>\n\
       <div class='taika-chat-status' id='taika-chat-status'></div>\n\
       <div class='taika-input-area'>\n\
-        <textarea id='taika-chat-input' data-tc-trans-key='Type your message here...' placeholder='Type your message here...' rows='3' wrap='soft' class='padded_placeholder taika-chat-input'></textarea>\n\
+        <textarea id='taika-chat-input' data-tc-trans-key='Type your message here...' placeholder='Kirjoita viestisi tähän...' rows='3' wrap='soft' class='padded_placeholder taika-chat-input'></textarea>\n\
         <div class='taika-chat-buttons'>\n\
           <div id='taika-file-info-panel' class='taika-file-info-panel'>\n\
             <span id='taika-file-name'></span>\n\
             <span id='taika-clear-file' class='taika-dialog-close'><i class='fa fa-close fa-2x'></i></span>\n\
           </div>\n\
-          <button type='button' class='taika-send-button' id='taika-send-button'><span data-tc-trans-key='Send'>Send</span></button>\n\
+          <button type='button' class='taika-send-button' id='taika-send-button'><span data-tc-trans-key='Send'>Lähetä</span></button>\n\
           <label for='taika-file-upload' class='taika-fileshare-button' id='taika-fileshare-button'>File share</label>\n\
           <input id='taika-file-upload' type='file'/>\n\
         </div>\n\
@@ -1465,14 +1464,24 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
         EmbedTaikaChatUI.agentStatus = EmbedTaikaChatCore.settings.chat.button.ifNoAgents;
       }
       EmbedTaikaChatUI.reloadSheduler();
+
+      // if (EmbedTaikaChatUI.currentPanel !== 'chat' &&
+      //   (EmbedTaikaChatCore.settings.chat.schedule.ifClosed !== 'keepChatOn' || EmbedTaikaChatCore.settings.chat.button.ifNoAgents !== 'keepChatOn')) {
+      //   if (EmbedTaikaChatUI.agentStatus === 'hideChat' || EmbedTaikaChatUI.sheduledStatus === 'hideChat') {
+      //     $("#taika-chat-button").hide();
+      //     $("#taika-chat-box").hide();
+      //     EmbedTaikaChatUI.maximized = false;
+      //     return;
+      //   }
       if (EmbedTaikaChatUI.currentPanel !== 'chat' &&
-        (EmbedTaikaChatCore.settings.chat.schedule.ifClosed !== 'keepChatOn' || EmbedTaikaChatCore.settings.chat.button.ifNoAgents !== 'keepChatOn')) {
-        if (EmbedTaikaChatUI.agentStatus === 'hideChat' || EmbedTaikaChatUI.sheduledStatus === 'hideChat') {
-          $("#taika-chat-button").hide();
-          $("#taika-chat-box").hide();
-          EmbedTaikaChatUI.maximized = false;
-          return;
-        }
+      ( EmbedTaikaChatCore.settings.chat.button.ifNoAgents !== 'keepChatOn')) {
+      if (EmbedTaikaChatUI.agentStatus === 'hideChat') {
+        $("#taika-chat-button").hide();
+        $("#taika-chat-box").hide();
+        EmbedTaikaChatUI.maximized = false;
+        return;
+      }
+
         if (EmbedTaikaChatUI.maximized) {
           $("#taika-chat-box").show();
         } else {
@@ -1652,7 +1661,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       return answers
     },
     closeChatWindow: function () {
-      this.msg_count = 0;
+      // this.msg_count = 0;
       clearTimeout(EmbedTaikaChatCore.timer);
       EmbedTaikaChatCore.sendClientMaximized(false);
       EmbedTaikaChatUI.closeAllDialogs();
@@ -1883,6 +1892,12 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
         this.msg_count++;
         let message = EmbedTaikaChatCommon.formattedNewLine(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(val))));
         $('#taika-chat-messages').append(this.userMessageTemplate(message, EmbedTaikaChatCommon.formatDate(new Date()), attachments));
+        if (this.msg_count === 1 ) {
+          setTimeout(function(){
+            $('#taika-chat-messages').append(`<div class='taika-agent-message' ><div class="message">Saimme viestinne. Että
+            asiakaspalvelun edustaja liittyy pian.</div></div>`);
+          }, 1250)
+        }
         this.chatMessagesScrollTop();
         this.checkTextLimit();
         EmbedTaikaChatCore.sendClientMessage(val, attachments);
@@ -2220,12 +2235,14 @@ var EmbedTaikaChatCore = EmbedTaikaChatCore || (function () {
       if (!message.hasOwnProperty('type')) return;
       //---------evg---name in the line answer on the client chat
       // EmbedTaikaChatUI.setStatusMessage(message.message_text + ' ' + EmbedTaikaChatCommon.getMsgByLocale(message.type));
-      EmbedTaikaChatUI.setStatusMessage(EmbedTaikaChatCommon.getMsgByLocale('Customer support writing'));
+      // EmbedTaikaChatUI.setStatusMessage(EmbedTaikaChatCommon.getMsgByLocale('Customer support writing'));
+      EmbedTaikaChatUI.setStatusMessage('Asiakaspalvelu kirjoittaminen');
       if (message.type === 'disconnect') {
         if (this.statusTimeout) clearTimeout(this.statusTimeout);
       } else if (message.type === 'join') {
         //-----evg name in the line answer on the client chat
-        EmbedTaikaChatUI.setStatusMessage(EmbedTaikaChatCommon.getMsgByLocale('Customer support online'));
+        // EmbedTaikaChatUI.setStatusMessage(EmbedTaikaChatCommon.getMsgByLocale('Customer support online'));
+        EmbedTaikaChatUI.setStatusMessage('Asiakaspalvelu verkossa');
         if (this.statusTimeout) clearTimeout(this.statusTimeout);
       } else if (message.type === 'writing') {
         this.statusTimeout = setTimeout(() => {
