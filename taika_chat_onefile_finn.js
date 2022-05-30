@@ -95,7 +95,7 @@ var chatPreview = `
 .taika-agent-message > .message {
   font-family: Helvetica;
   line-height: 15px;
-  font-size: 14px;
+  font-size: 13px;
   color: rgba(0,0,0,0.90);
   letter-spacing: 0;
   display: table-cell;
@@ -132,7 +132,7 @@ var chatPreview = `
 .taika-user-message > .message {
   font-family: Helvetica;
   line-height: 15px;
-  font-size: 14px;
+  font-size: 13px;
   color: rgba(0,0,0,0.90);
   letter-spacing: 0;
   display: table-cell;
