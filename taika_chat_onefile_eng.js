@@ -1903,7 +1903,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
           setTimeout(function(){
             $('#taika-chat-messages').append(`<div class='taika-agent-message' ><div class="message">We have received your message. The
             customer service representative will join you shortly.</div></div>`);
-          }, 1400)
+          }, 2000)
         }
         this.chatMessagesScrollTop();
         this.checkTextLimit();
