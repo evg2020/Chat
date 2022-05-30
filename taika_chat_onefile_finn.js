@@ -1896,7 +1896,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
           setTimeout(function(){
             $('#taika-chat-messages').append(`<div class='taika-agent-message' ><div class="message">Saimme viestinne. Että
             asiakaspalvelun edustaja liittyy pian.</div></div>`);
-          }, 1250)
+          }, 1400)
         }
         this.chatMessagesScrollTop();
         this.checkTextLimit();
