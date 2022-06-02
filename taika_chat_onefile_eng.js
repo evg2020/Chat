@@ -912,10 +912,10 @@ function checkMoment() {
 					},
 					"ifNoAgents": "hideChat",
 					"chatIcon": true,
-					"availableAgents": true,
+					"availableAgents": false,
 					"customText": " Chat ",
 					"textSize": "normal",
-					"cornerRadius": "15%/50%",
+					"cornerRadius": "20%/50%",
 					"color": "000000",
 					"customColor": "27A536",
 					"alignment": "bottom-right",
@@ -1202,8 +1202,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       this.new_message_counter = 0;
       this.msg_count = 0;
       this.currentPanel = 'none';
-      // this.agentStatus = 'keepChatOn';
-      this.agentStatus = 'hideChat';
+      this.agentStatus = 'keepChatOn';
       this.sheduledStatus = 'keepChatOn';
     },
     setStatusMessage: function (text) {
@@ -1469,22 +1468,15 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       }
       EmbedTaikaChatUI.reloadSheduler();
 
-      // if (EmbedTaikaChatUI.currentPanel !== 'chat' &&
-      //   (EmbedTaikaChatCore.settings.chat.schedule.ifClosed !== 'keepChatOn' || EmbedTaikaChatCore.settings.chat.button.ifNoAgents !== 'keepChatOn')) {
-      //   if (EmbedTaikaChatUI.agentStatus === 'hideChat' || EmbedTaikaChatUI.sheduledStatus === 'hideChat') {
-      //     $("#taika-chat-button").hide();
-      //     $("#taika-chat-box").hide();
-      //     EmbedTaikaChatUI.maximized = false;
-      //     return;
-      //   }
-        if (EmbedTaikaChatUI.currentPanel !== 'chat' &&
-        ( EmbedTaikaChatCore.settings.chat.button.ifNoAgents !== 'keepChatOn')) {
-        if (EmbedTaikaChatUI.agentStatus === 'hideChat') {
+      if (EmbedTaikaChatUI.currentPanel !== 'chat' &&
+        (EmbedTaikaChatCore.settings.chat.schedule.ifClosed !== 'keepChatOn' || EmbedTaikaChatCore.settings.chat.button.ifNoAgents !== 'keepChatOn')) {
+        if (EmbedTaikaChatUI.agentStatus === 'hideChat' || EmbedTaikaChatUI.sheduledStatus === 'hideChat') {
           $("#taika-chat-button").hide();
           $("#taika-chat-box").hide();
           EmbedTaikaChatUI.maximized = false;
           return;
         }
+
 
         if (EmbedTaikaChatUI.maximized) {
           $("#taika-chat-box").show();

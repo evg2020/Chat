@@ -1465,22 +1465,15 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       }
       EmbedTaikaChatUI.reloadSheduler();
 
-      // if (EmbedTaikaChatUI.currentPanel !== 'chat' &&
-      //   (EmbedTaikaChatCore.settings.chat.schedule.ifClosed !== 'keepChatOn' || EmbedTaikaChatCore.settings.chat.button.ifNoAgents !== 'keepChatOn')) {
-      //   if (EmbedTaikaChatUI.agentStatus === 'hideChat' || EmbedTaikaChatUI.sheduledStatus === 'hideChat') {
-      //     $("#taika-chat-button").hide();
-      //     $("#taika-chat-box").hide();
-      //     EmbedTaikaChatUI.maximized = false;
-      //     return;
-      //   }
       if (EmbedTaikaChatUI.currentPanel !== 'chat' &&
-      ( EmbedTaikaChatCore.settings.chat.button.ifNoAgents !== 'keepChatOn')) {
-      if (EmbedTaikaChatUI.agentStatus === 'hideChat') {
-        $("#taika-chat-button").hide();
-        $("#taika-chat-box").hide();
-        EmbedTaikaChatUI.maximized = false;
-        return;
-      }
+        (EmbedTaikaChatCore.settings.chat.schedule.ifClosed !== 'keepChatOn' || EmbedTaikaChatCore.settings.chat.button.ifNoAgents !== 'keepChatOn')) {
+        if (EmbedTaikaChatUI.agentStatus === 'hideChat' || EmbedTaikaChatUI.sheduledStatus === 'hideChat') {
+          $("#taika-chat-button").hide();
+          $("#taika-chat-box").hide();
+          EmbedTaikaChatUI.maximized = false;
+          return;
+        }
+
 
         if (EmbedTaikaChatUI.maximized) {
           $("#taika-chat-box").show();
