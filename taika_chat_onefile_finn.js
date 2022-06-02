@@ -1654,7 +1654,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       return answers
     },
     closeChatWindow: function () {
-      // this.msg_count = 0;
+      this.msg_count = 0;
       clearTimeout(EmbedTaikaChatCore.timer);
       EmbedTaikaChatCore.sendClientMaximized(false);
       EmbedTaikaChatUI.closeAllDialogs();
