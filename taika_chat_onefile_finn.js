@@ -1449,7 +1449,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
         EmbedTaikaChatUI.audioElement = $("<audio></audio>").attr({
           'src': EmbedTaikaChatCore.resourceUrl + 'sound.mp3',
         });
-        EmbedTaikaChatUI.audioElement.load();
+        // EmbedTaikaChatUI.audioElement.load();
         EmbedTaikaChatUI.audioElement.volume = EmbedTaikaChatUI.volume;
       } else {
         EmbedTaikaChatUI.audioElement.trigger("play");
@@ -1654,7 +1654,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       return answers
     },
     closeChatWindow: function () {
-      this.msg_count = 0;
+      // this.msg_count = 0;
       clearTimeout(EmbedTaikaChatCore.timer);
       EmbedTaikaChatCore.sendClientMaximized(false);
       EmbedTaikaChatUI.closeAllDialogs();
@@ -1785,25 +1785,27 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
     putMessage: function (mess) {
       if (mess.action === "agent_message") {
         EmbedTaikaChatUI.playAudio();
-        if (EmbedTaikaChatUI.maximized === false) { // Minimized
+        $('#taika-chat-messages').append(this.agentMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments));
 
-          //this.new_message_counter++;
-          // $("#wcs-minimize-logo").hide();
-          // if (this.new_message_counter == 1) {
-          //   $("#wcs-new-message").empty().append("1 uusi viesti");
-          // } else {
-          //   $("#wcs-new-message").empty().append(new_message_counter + " uutta viestiä");
-          // }
-          EmbedTaikaChatUI.saved_content += this.agentMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments);
-        } else {
-          $('#taika-chat-messages').append(this.agentMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments));
-        }
+        // if (EmbedTaikaChatUI.maximized === true) { // Minimized
+        //   // this.new_message_counter++;
+        //   // $("#wcs-minimize-logo").hide();
+        //   // if (this.new_message_counter == 1) {
+        //   //   $("#wcs-new-message").empty().append("1 uusi viesti");
+        //   // } else {
+        //   //   $("#wcs-new-message").empty().append(new_message_counter + " uutta viestiä");
+        //   // }
+        //   EmbedTaikaChatUI.saved_content += this.agentMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments);
+        // } else {
+        //   $('#taika-chat-messages').append(this.agentMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments));
+        // }
         this.chatMessagesScrollTop();
       } else if (mess.action == "own_message") {
         $('#taika-chat-messages').append(this.userMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments));
         this.chatMessagesScrollTop();
       } else {}
     },
+
     resetNewMessageCounter: function () {
       this.new_message_counter = 0;
     },

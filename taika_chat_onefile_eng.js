@@ -910,7 +910,7 @@ function checkMoment() {
 							"unit": "%"
 						}
 					},
-					"ifNoAgents": "keepChatOn",
+					"ifNoAgents": "hideChat",
 					"chatIcon": true,
 					"availableAgents": false,
 					"customText": " Chat ",
@@ -1658,7 +1658,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       return answers
     },
     closeChatWindow: function () {
-      this.msg_count = 0;
+      // this.msg_count = 0;
       clearTimeout(EmbedTaikaChatCore.timer);
       EmbedTaikaChatCore.sendClientMaximized(false);
       EmbedTaikaChatUI.closeAllDialogs();
@@ -1743,7 +1743,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
           body += EmbedTaikaChatCore.username
         } else {
           body += "Agent"
-        }client_status
+        }
         $(elem).children(".taika-message-time").text()
         body += " (" + $(elem).children(".taika-message-time").text() + "):" + $(elem).children(".message").text() + "\n"
       });
@@ -1786,29 +1786,32 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
         }
       }
     },
+
     putMessage: function (mess) {
       if (mess.action === "agent_message") {
         EmbedTaikaChatUI.playAudio();
-        if (EmbedTaikaChatUI.maximized === false) { // Minimized
+        $('#taika-chat-messages').append(this.agentMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments));
 
-          // this.new_message_counter++;
-          // $("#wcs-minimize-logo").hide();
-          // if (this.new_message_counter == 1) {
-          //   $("#wcs-new-message").empty().append("1 uusi viesti");
-          // } else {
-          //   $("#wcs-new-message").empty().append(new_message_counter + " uutta viestiä");
-          // }
+        // if (EmbedTaikaChatUI.maximized === true) { // Minimized
+        //   // this.new_message_counter++;
+        //   // $("#wcs-minimize-logo").hide();
+        //   // if (this.new_message_counter == 1) {
+        //   //   $("#wcs-new-message").empty().append("1 uusi viesti");
+        //   // } else {
+        //   //   $("#wcs-new-message").empty().append(new_message_counter + " uutta viestiä");
+        //   // }
+        //   EmbedTaikaChatUI.saved_content += this.agentMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments);
+        // } else {
+        //   $('#taika-chat-messages').append(this.agentMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments));
+        // }
 
-          EmbedTaikaChatUI.saved_content += this.agentMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments);
-        } else {
-          $('#taika-chat-messages').append(this.agentMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments));
-        }
         this.chatMessagesScrollTop();
       } else if (mess.action == "own_message") {
         $('#taika-chat-messages').append(this.userMessageTemplate(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(mess.text))), mess.date, mess.attachments));
         this.chatMessagesScrollTop();
       } else {}
     },
+
     resetNewMessageCounter: function () {
       this.new_message_counter = 0;
     },
@@ -1890,12 +1893,12 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
         this.msg_count++;
         let message = EmbedTaikaChatCommon.formattedNewLine(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(val))));
         $('#taika-chat-messages').append(this.userMessageTemplate(message, EmbedTaikaChatCommon.formatDate(new Date()), attachments));
-        // if (this.msg_count === 1) {
-        //   setTimeout(function(){
-        //     $('#taika-chat-messages').append(`<div class='taika-agent-message' ><div class="message">We have received your message. The
-        //     customer service representative will join you shortly.</div></div>`);
-        //   }, 2000)
-        // }
+        if (this.msg_count === 1) {
+          setTimeout(function(){
+            $('#taika-chat-messages').append(`<div class='taika-agent-message' ><div class="message">We have received your message. The
+            customer service representative will join you shortly.</div></div>`);
+          }, 2000)
+        }
         this.chatMessagesScrollTop();
         this.checkTextLimit();
         EmbedTaikaChatCore.sendClientMessage(val, attachments);
