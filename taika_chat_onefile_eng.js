@@ -877,8 +877,8 @@ function checkMoment() {
 			},
 			"chat": {
 				"schedule": {
-					"ifClosed": "keepChatOn",
-					"showOpenTime": false
+					"ifClosed": "hideChat",
+					"showOpenTime": true
 				},
 				"customerSatisfaction": {
 					"toggled": true,

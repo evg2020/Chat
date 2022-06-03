@@ -110,3 +110,119 @@ function checkMoment() {
 document.addEventListener("DOMContentLoaded", function (event) {
   checkMoment()
 })
+
+
+{
+  "TRANSLATIONS": [{
+    "key": "welcomeText",
+    "value": "Welcome"
+  }, {
+    "key": "Print",
+    "value": "Print"
+  }, {
+    "key": "Mail",
+    "value": "Mail"
+  }, {
+    "key": "Start chat",
+    "value": "Start chat"
+  }, {
+    "key": "Chat with us",
+    "value": "Chat with us"
+  }, {
+    "key": "chat with us",
+    "value": "chat with us"
+  }, {
+    "key": "Today's schedule",
+    "value": "Today's schedule"
+  }, {
+    "key": "File share",
+    "value": "File share"
+  }, {
+    "key": "Sound",
+    "value": "Sound"
+  }, {
+    "key": "Type your message here...",
+    "value": "Type your message here..."
+  }, {
+    "key": "available agents",
+    "value": "available agents"
+  }, {
+    "key": "Send",
+    "value": "Send"
+  }, {
+    "key": "Type your message here",
+    "value": "Type your message here"
+  }, {
+    "key": "open",
+    "value": "Open"
+  }, {
+    "key": "Please give us your name",
+    "value": "Username"
+  }, {
+    "key": "closed",
+    "value": "Closed"
+  }, {
+    "key": "How satisfied are you with assistance?",
+    "value": "How satisfied are you with assistance?"
+  }, {
+    "key": "No",
+    "value": "No"
+  }, {
+    "key": "username",
+    "value": "Tell us your name"
+  }, {
+    "key": "Yes",
+    "value": "Yes"
+  }, {
+    "key": "KB",
+    "value": "KB"
+  }, {
+    "key": "MB",
+    "value": "MB"
+  }, {
+    "key": "Bytes",
+    "value": "Bytes"
+  }, {
+    "key": "Select file for share",
+    "value": "Select file for share"
+  }, {
+    "key": "writing",
+    "value": "writing"
+  }, {
+    "key": "disconnect",
+    "value": "disconnected"
+  }, {
+    "key": "join",
+    "value": "joined"
+  }, {
+    "key": "How are you satisfied with assistance?",
+    "value": "How are you satisfied with assistance?"
+  }, {
+    "key": "Good",
+    "value": "Good"
+  }, {
+    "key": "Bad",
+    "value": "Bad"
+  }, {
+    "key": "CustomerSupportWriting",
+    "value": "Customer support writing"
+  }, {
+    "key": "CustomerSupportOnline",
+    "value": "Customer support online"
+  }, {
+    "key": "EndConversation",
+    "value": "Do you want to end the conversation?"
+  }, {
+    "key": "Do you want to end the conversation?",
+    "value": "Do you want to end the conversation?"
+  }, {
+    "key": "Customer support online",
+    "value": "Customer support online"
+  }, {
+    "key": "good",
+    "value": "good"
+  }, {
+    "key": "bad",
+    "value": "bad"
+  }]
+}
