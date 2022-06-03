@@ -1181,6 +1181,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 //Script chatScriptCore.js------------------------------
 
+
 // Close the dropdown menu if the user clicks outside of it
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
