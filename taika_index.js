@@ -18,7 +18,7 @@ $("<link rel='stylesheet' id='chatstyle-css' href='./css/taika_test_style.css' t
 function checkMoment() {
 	if (typeof moment !== "undefined" && moment && moment.tz) {
 		if (initDelayTimeout) clearTimeout(initDelayTimeout);
-		EmbedTaikaChatCore.init('wss://node2.taikacompany.com:9090', 'https://node2.taikacompany.com:3000/static/res/', {
+		EmbedTaikaChatCore.init('wss://connect.taikacompany.com/chat/socket', 'https://connect.taikacompany.com/static/res/', {
 			"sla": {
 				"silver": {
 					"time": 1,

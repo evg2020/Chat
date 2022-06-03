@@ -877,7 +877,7 @@ function checkMoment() {
 			},
 			"chat": {
 				"schedule": {
-					"ifClosed": "hideChat",
+					"ifClosed": "keepChatOn",
 					"showOpenTime": false
 				},
 				"customerSatisfaction": {
@@ -910,7 +910,7 @@ function checkMoment() {
 							"unit": "%"
 						}
 					},
-					"ifNoAgents": "hideChat",
+					"ifNoAgents": "keepChatOn",
 					"chatIcon": true,
 					"availableAgents": false,
 					"customText": " Chat ",
@@ -1744,7 +1744,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
           body += EmbedTaikaChatCore.username
         } else {
           body += "Agent"
-        }
+        }client_status
         $(elem).children(".taika-message-time").text()
         body += " (" + $(elem).children(".taika-message-time").text() + "):" + $(elem).children(".message").text() + "\n"
       });
@@ -1788,7 +1788,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       }
     },
     putMessage: function (mess) {
-      if (mess.action === "agent_message") {
+      if (mess.action === "message_text") {
         EmbedTaikaChatUI.playAudio();
         if (EmbedTaikaChatUI.maximized === false) { // Minimized
 
@@ -1891,12 +1891,12 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
         this.msg_count++;
         let message = EmbedTaikaChatCommon.formattedNewLine(EmbedTaikaChatCommon.urlify(decodeURIComponent(encodeURIComponent(val))));
         $('#taika-chat-messages').append(this.userMessageTemplate(message, EmbedTaikaChatCommon.formatDate(new Date()), attachments));
-        if (this.msg_count === 1) {
-          setTimeout(function(){
-            $('#taika-chat-messages').append(`<div class='taika-agent-message' ><div class="message">We have received your message. The
-            customer service representative will join you shortly.</div></div>`);
-          }, 2000)
-        }
+        // if (this.msg_count === 1) {
+        //   setTimeout(function(){
+        //     $('#taika-chat-messages').append(`<div class='taika-agent-message' ><div class="message">We have received your message. The
+        //     customer service representative will join you shortly.</div></div>`);
+        //   }, 2000)
+        // }
         this.chatMessagesScrollTop();
         this.checkTextLimit();
         EmbedTaikaChatCore.sendClientMessage(val, attachments);
@@ -2424,7 +2424,7 @@ var EmbedTaikaChatCore = EmbedTaikaChatCore || (function () {
         mess.attachments = obj["attachments"];
       }
       if (mess.action !== "AGENT_CHAT_MESSAGE" && obj.hasOwnProperty("AGENT_CHAT_MESSAGE")) {
-        mess.action = "agent_message"
+        mess.action = "message_text"
       }
       EmbedTaikaChatUI.putMessage(mess);
     },
