@@ -1460,7 +1460,9 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
       if (EmbedTaikaChatCore.settings.chat.button.availableAgents) {
         $('#avaible_agents').text(`${EmbedTaikaChatCommon.getMsgByLocale('available agents')} : ${EmbedTaikaChatCore.availableAgents}`);
       }
-      if (EmbedTaikaChatCore.availableAgents === 0) {
+      // if (EmbedTaikaChatCore.availableAgents === 0)
+      if (EmbedTaikaChatCore.availableAgents === 0  || EmbedTaikaChatCore.availableAgents === 1  )
+      {
         EmbedTaikaChatUI.agentStatus = EmbedTaikaChatCore.settings.chat.button.ifNoAgents;
       }
       EmbedTaikaChatUI.reloadSheduler();
@@ -1891,7 +1893,7 @@ var EmbedTaikaChatUI = EmbedTaikaChatUI || (function () {
           setTimeout(function(){
             $('#taika-chat-messages').append(`<div class='taika-agent-message' ><div class="message">Saimme viestinne. Että
             asiakaspalvelun edustaja liittyy pian.</div></div>`);
-          }, 1500)
+          }, 2500)
         }
         this.chatMessagesScrollTop();
         this.checkTextLimit();
