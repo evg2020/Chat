@@ -912,7 +912,7 @@ function checkMoment() {
 					},
 					"ifNoAgents": "hideChat",
 					"chatIcon": true,
-					"availableAgents": false,
+					"availableAgents": true,
 					"customText": " Chat ",
 					"textSize": "normal",
 					"cornerRadius": "20%/50%",
