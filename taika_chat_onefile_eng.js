@@ -20,7 +20,7 @@ var chatPreview = `
   position: fixed;
   bottom: 10px;
   right: 5px;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Open Sans", Roboto, Arial, sans-serif;
   /*line-height: 36px;*/
   font-size: 11px;
   z-index: 500;
@@ -33,7 +33,7 @@ var chatPreview = `
   border: 1px solid #CCEEF9;
   border-radius: 8px 8px 0 0;
   background-color: #CCEEF9;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Open Sans", Roboto, Arial, sans-serif;
   /*line-height: 36px;*/
   font-size: 14px;
   z-index: 2;
@@ -63,7 +63,7 @@ var chatPreview = `
   /*border-left-width: 5px;*/
   border-radius: 0 0 8px 8px;
   background-color: #ffffff;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Open Sans", Roboto, Arial, sans-serif;
   /*line-height: 36px;*/
   font-size: 11px;
 }
@@ -95,7 +95,7 @@ var chatPreview = `
 }
 
 .taika-agent-message > .message {
-  font-family: Helvetica;
+  font-family: "Open Sans";
   line-height: 15px;
   font-size: 13px;
   color: rgba(0,0,0,0.90);
@@ -132,7 +132,7 @@ var chatPreview = `
 }
 
 .taika-user-message > .message {
-  font-family: Helvetica;
+  font-family: "Open Sans";
   line-height: 15px;
   font-size: 13px;
   color: rgba(0,0,0,0.90);
@@ -183,7 +183,9 @@ var chatPreview = `
 
 .greeting-word {
   padding: 6px 0 12px 15px;
-  font-size: 14px
+  font-family: "Open Sans";
+  font-size: 13px;
+
 }
 
 .taika-fileshare-button{
@@ -201,7 +203,7 @@ var chatPreview = `
 }
 
 .taika-greeting-text {
-  font-family: Helvetica;
+  font-family: "Open Sans";
   width: 230px;
   margin-left: 16px;
   font-size: 16px;
@@ -213,7 +215,7 @@ var chatPreview = `
 }
 .taika-greeting-closed {
   display: inline-block;
-  font-family: Helvetica;
+  font-family: "Open Sans";
   width: 230px;
   /*background-color: red;*/
   /*margin-top: 10px;*/
@@ -534,7 +536,7 @@ var testStyle = `
   position: fixed;
   bottom: 0;
   right: 3px;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Open Sans", Roboto, Arial, sans-serif;
   width: 280px;
   height: 36px;
   font-size: 11px;
@@ -546,7 +548,7 @@ var testStyle = `
   right: 0px;
   border-style: solid;
   border-width: 0px 0px 0px 5px;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Open Sans", Roboto, Arial, sans-serif;
   width: 280px;
   height: 450px;
 
@@ -658,7 +660,7 @@ var testStyle = `
   width: 60px;
   float: right;
   cursor: pointer;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family:"Open Sans", Roboto, Arial, sans-serif;
   /*  margin: 5px, 5px, 1.25rem;
     position: relative;*/
   border-radius: 0px 5px 5px 5px;
@@ -911,8 +913,9 @@ function checkMoment() {
 						}
 					},
 					"ifNoAgents": "hideChat",
+					// "ifNoAgents": "keepChatOn",
 					"chatIcon": true,
-					"availableAgents": true,
+					"availableAgents": false,
 					"customText": " Chat ",
 					"textSize": "normal",
 					"cornerRadius": "20%/50%",
